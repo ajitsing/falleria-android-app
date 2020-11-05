@@ -5,18 +5,20 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
-  build:
+  unit-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
       - name: Run tests
         run: ./gradlew test
+  instrumentation-test:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
       - name: Run espresso tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          target: default
-          arch: x86
-          profile: Nexus 6
           script: ./gradlew connectedCheck --stacktrace
