@@ -5,34 +5,20 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
-#  unit-test:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout the code
-#        uses: actions/checkout@v2
-#      - name: Run tests
-#        run: ./gradlew test
-#  instrumentation-test:
-#    needs: unit-test
-#    runs-on: macos-latest
-#    steps:
-#      - name: Checkout the code
-#        uses: actions/checkout@v2
-#      - name: Run espresso tests
-#        uses: reactivecircus/android-emulator-runner@v2
-#        with:
-#          api-level: 29
-#          script: ./gradlew connectedCheck --stacktrace
-  package:
-#    needs: [unit-tests, instrumentation-test]
+  unit-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
-      - name: Create APK
-        run: ./gradlew assembleDebug
-      - name: Releasing using Hub
-        uses: ShaunLWM/action-release-debugapk@master
-        env:
-          APP_FOLDER: app
-          RELEASE_TITLE: Build For Alpha Testing
+      - name: Run tests
+        run: ./gradlew test
+  instrumentation-test:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+      - name: Run espresso tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: ./gradlew connectedCheck --stacktrace
