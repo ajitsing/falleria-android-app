@@ -54,6 +54,6 @@ jobs:
           appName: ajitsing/droid
           token: ${{secrets.APP_CENTER_TOKEN}}
           group: FalleriaAlphaTesters
-          file: falleria-alpha-app.apk
+          file: /home/runner/work/droid/droid/falleria-alpha-app.apk
           notifyTesters: true
           debug: true
