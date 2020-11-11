@@ -37,5 +37,22 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with: 
-          name: app
+          name: falleria-alpha-app.apk
           path: app/build/outputs/apk/debug/app-debug.apk
+  distribute-for-alpha-testing:
+    needs: [build]
+    name: Distribut for Alpha testing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download latest artifact
+      - uses: actions/download-artifact@v2
+        with:
+          name: falleria-alpha-app.apk
+      - name: Upload to app center
+      - uses: devussy/AppCenter-Distribute-Github-Action@v1.0.5
+        with:
+          app: ajitsing/droid
+          token: ${{secrets.APP_CENTER_TOKEN}}
+          group: FalleriaAlphaTesters
+          file: falleria-alpha-app.apk
+          silent: false
