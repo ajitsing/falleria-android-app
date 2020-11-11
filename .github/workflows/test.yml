@@ -45,11 +45,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download latest artifact
-      - uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v2
         with:
           name: falleria-alpha-app.apk
       - name: Upload to app center
-      - uses: devussy/AppCenter-Distribute-Github-Action@v1.0.5
+        uses: devussy/AppCenter-Distribute-Github-Action@v1.0.5
         with:
           app: ajitsing/droid
           token: ${{secrets.APP_CENTER_TOKEN}}
