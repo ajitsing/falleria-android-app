@@ -48,12 +48,14 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: falleria-alpha-app.apk
+      - name: list current dir
+        run: pwd; ls -l
       - name: Upload to app center
         uses: wzieba/AppCenter-Github-Action@v1
         with:
           appName: ajitsing/droid
           token: ${{secrets.APP_CENTER_TOKEN}}
           group: FalleriaAlphaTesters
-          file: /home/runner/work/droid/droid/falleria-alpha-app.apk
+          file: /github/workspace/falleria-alpha-app.apk
           notifyTesters: true
           debug: true
