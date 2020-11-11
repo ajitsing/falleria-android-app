@@ -49,7 +49,7 @@ jobs:
         with:
           name: falleria-alpha-app.apk
       - name: Upload to app center
-        uses: devussy/AppCenter-Distribute-Github-Action@v1.0.5
+        uses: devussy/AppCenter-Distribute-Github-Action-latest
         with:
           app: ajitsing/droid
           token: ${{secrets.APP_CENTER_TOKEN}}
