@@ -5,25 +5,25 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
-  # unit-test:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout the code
-  #       uses: actions/checkout@v2
-  #     - name: Run tests
-  #       run: ./gradlew test
-  # instrumentation-test:
-  #   runs-on: macos-latest
-  #   steps:
-  #     - name: Checkout the code
-  #       uses: actions/checkout@v2
-  #     - name: Run espresso tests
-  #       uses: reactivecircus/android-emulator-runner@v2
-  #       with:
-  #         api-level: 29
-  #         script: ./gradlew connectedCheck --stacktrace
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+      - name: Run tests
+        run: ./gradlew test
+  instrumentation-test:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+      - name: Run espresso tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: ./gradlew connectedCheck --stacktrace
   build:
-    # needs: [unit-test, instrumentation-test]
+    needs: [unit-test, instrumentation-test]
     name: Generate APK
     runs-on: ubuntu-latest
     steps:
